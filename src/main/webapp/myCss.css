@@ -1,0 +1,41 @@
+/* 
+    Created on : Jan 28, 2016, 7:12:56 PM
+    Author     : Scott
+*/
+
+.footer{
+    bottom: 0;
+    width: 100%;
+    position: relative;
+/*    background-color:darkgray*/
+}
+#img{
+    border-radius: 25px;
+}
+#content{
+    border-style: solid;
+    padding:10px;
+    background-color:aliceblue
+}
+.container{
+    border-style: solid;;
+    padding:15px;
+}
+body{
+    background-color:darkcyan;
+}
+table{
+    background-color:lightgrey;
+}
+#cont{
+/*    background-color:darkgray;*/
+}
+.row{
+    padding:20px;
+}
+.btn-info{
+    padding:10px;
+}
+
+
+
