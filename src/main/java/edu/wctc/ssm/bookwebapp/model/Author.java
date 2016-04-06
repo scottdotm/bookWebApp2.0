@@ -1,6 +1,7 @@
 package edu.wctc.ssm.bookwebapp.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -22,95 +23,96 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author jlombardo
+ * @author Scott
  */
 @Entity
 @Table(name = "author")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),
-    @NamedQuery(name = "Author.findByAuthorId", query = "SELECT a FROM Author a WHERE a.authorId = :authorId"),
-    @NamedQuery(name = "Author.findByAuthorName", query = "SELECT a FROM Author a WHERE a.authorName = :authorName"),
-    @NamedQuery(name = "Author.findByDateAdded", query = "SELECT a FROM Author a WHERE a.dateAdded = :dateAdded")})
+     @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),
+     @NamedQuery(name = "Author.findByAuthorId", query = "SELECT a FROM Author a WHERE a.authorId = :authorId"),
+     @NamedQuery(name = "Author.findByAuthorName", query = "SELECT a FROM Author a WHERE a.authorName = :authorName"),
+     @NamedQuery(name = "Author.findByDateAdded", query = "SELECT a FROM Author a WHERE a.dateAdded = :dateAdded")})
 public class Author implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "author_id")
-    private Integer authorId;
-    @Size(max = 80)
-    @Column(name = "author_name")
-    private String authorName;
-    @Column(name = "date_added")
-    @Temporal(TemporalType.DATE)
-    private Date dateAdded;
-    @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL)
-    private Set<Books> bookSet;
 
-    public Author() {
-    }
+     private static final long serialVersionUID = 1L;
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Basic(optional = false)
+     @Column(name = "author_id")
+     private Integer authorId;
+     @Size(max = 45)
+     @Column(name = "author_name")
+     private String authorName;
+     @Column(name = "date_added")
+     @Temporal(TemporalType.DATE)
+     private Date dateAdded;
+     @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL)
+     private Set<Book> bookSet;
 
-    public Author(Integer authorId) {
-        this.authorId = authorId;
-    }
+     public Author() {
+     }
 
-    public Integer getAuthorId() {
-        return authorId;
-    }
+     public Author(Integer authorId) {
+          this.authorId = authorId;
+     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public Date getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    @XmlTransient
-    public Set<Books> getBookSet() {
+     public Integer getAuthorId() {
+          return authorId;
+     }
+     
+     @XmlTransient
+    public Set<Book> getBookSet() {
         return bookSet;
     }
 
-    public void setBookSet(Set<Books> bookSet) {
+    public void setBookSet(Set<Book> bookSet) {
         this.bookSet = bookSet;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (authorId != null ? authorId.hashCode() : 0);
-        return hash;
-    }
+     public void setAuthorId(Integer authorId) {
+          this.authorId = authorId;
+     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Author)) {
-            return false;
-        }
-        Author other = (Author) object;
-        if ((this.authorId == null && other.authorId != null) || (this.authorId != null && !this.authorId.equals(other.authorId))) {
-            return false;
-        }
-        return true;
-    }
+     public String getAuthorName() {
+          return authorName;
+     }
 
-    @Override
-    public String toString() {
-        return "edu.wctc.web.demo.bookwebapp.entity.Author[ authorId=" + authorId + " ]";
-    }
-    
+     public void setAuthorName(String authorName) {
+          this.authorName = authorName;
+     }
+
+     public Date getDateAdded() {
+          return dateAdded;
+     }
+
+     public void setDateAdded(Date dateAdded) {
+          this.dateAdded = dateAdded;
+     }
+
+     @Override
+     public int hashCode() {
+          int hash = 0;
+          hash += (authorId != null ? authorId.hashCode() : 0);
+          return hash;
+     }
+
+     @Override
+     public boolean equals(Object object) {
+          // TODO: Warning - this method won't work in the case the id fields are not set
+          if (!(object instanceof Author)) {
+               return false;
+          }
+          Author other = (Author) object;
+          if ((this.authorId == null && other.authorId != null) || (this.authorId != null && !this.authorId.equals(other.authorId))) {
+               return false;
+          }
+          return true;
+     }
+
+     @Override
+     public String toString() {
+          return "edu.wctc.ssm.bookwebapp.model.Author[ authorId=" + authorId + " ]";
+     }
+     
 }

@@ -6,7 +6,6 @@
 package edu.wctc.ssm.bookwebapp.ejb;
 
 import edu.wctc.ssm.bookwebapp.model.Author;
-import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

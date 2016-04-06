@@ -25,14 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Scott
  */
 @Entity
-@Table(name = "books")
+@Table(name = "book")
 @XmlRootElement
 @NamedQueries({
-     @NamedQuery(name = "Books.findAll", query = "SELECT b FROM Books b"),
-     @NamedQuery(name = "Books.findByBookId", query = "SELECT b FROM Books b WHERE b.bookId = :bookId"),
-     @NamedQuery(name = "Books.findByTitle", query = "SELECT b FROM Books b WHERE b.title = :title"),
-     @NamedQuery(name = "Books.findByIsbn", query = "SELECT b FROM Books b WHERE b.isbn = :isbn")})
-public class Books implements Serializable {
+     @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
+     @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
+     @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
+     @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn")})
+public class Book implements Serializable {
 
      private static final long serialVersionUID = 1L;
      @Id
@@ -50,10 +50,10 @@ public class Books implements Serializable {
      @ManyToOne
      private Author authorId;
 
-     public Books() {
+     public Book() {
      }
 
-     public Books(Integer bookId) {
+     public Book(Integer bookId) {
           this.bookId = bookId;
      }
 
@@ -99,10 +99,10 @@ public class Books implements Serializable {
      @Override
      public boolean equals(Object object) {
           // TODO: Warning - this method won't work in the case the id fields are not set
-          if (!(object instanceof Books)) {
+          if (!(object instanceof Book)) {
                return false;
           }
-          Books other = (Books) object;
+          Book other = (Book) object;
           if ((this.bookId == null && other.bookId != null) || (this.bookId != null && !this.bookId.equals(other.bookId))) {
                return false;
           }
@@ -111,7 +111,7 @@ public class Books implements Serializable {
 
      @Override
      public String toString() {
-          return "edu.wctc.ssm.bookwebapp.model.Books[ bookId=" + bookId + " ]";
+          return "edu.wctc.ssm.bookwebapp.model.Book[ bookId=" + bookId + " ]";
      }
      
 }

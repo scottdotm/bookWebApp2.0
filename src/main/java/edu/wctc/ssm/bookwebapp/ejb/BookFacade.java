@@ -1,6 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.wctc.ssm.bookwebapp.ejb;
 
-import edu.wctc.ssm.bookwebapp.model.Books;
+import edu.wctc.ssm.bookwebapp.model.Book;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Scott
  */
 @Stateless
-public class BooksFacade extends AbstractFacade<Books> {
+public class BookFacade extends AbstractFacade<Book> {
 
      @PersistenceContext(unitName = "edu.wctc.ssm_bookWebApp_war_1.0-SNAPSHOTPU")
      private EntityManager em;
@@ -20,8 +25,8 @@ public class BooksFacade extends AbstractFacade<Books> {
           return em;
      }
 
-     public BooksFacade() {
-          super(Books.class);
+     public BookFacade() {
+          super(Book.class);
      }
      
 }
