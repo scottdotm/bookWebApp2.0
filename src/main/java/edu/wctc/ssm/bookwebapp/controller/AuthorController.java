@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * The main controller for author-related activities. This servlet is configured
  * in web.xml, so no annotations are used here.
  *
- * @author scott
+ * @author Scott
  */
 public class AuthorController extends HttpServlet {
 
