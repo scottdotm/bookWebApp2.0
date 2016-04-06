@@ -1,6 +1,6 @@
 package edu.wctc.ssm.bookwebapp.controller;
 
-import edu.wctc.ssm.bookwebapp.ejb.AuthorFacade;
+import edu.wctc.ssm.bookwebapp.ejb.AbstractFacade;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import edu.wctc.ssm.bookwebapp.model.Author;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ public class AuthorController extends HttpServlet {
 
 
     @Inject
-    private AuthorFacade aus;
+    private AbstractFacade<Author> aus;
     
     //No magic numbers
     private static final String ADD_PAGE = "Add.jsp";
@@ -66,22 +67,23 @@ public class AuthorController extends HttpServlet {
 
             String id = request.getParameter("authorId");
             String name = request.getParameter("authorName");
-            String date = request.getParameter("authorDate");
+            //String date = request.getParameter("authorDate");
+            Author author = null;
 
             //delete
             if (subAction.equals(DELETE_ACTION)) {
                 if (id != null && !"".equals(id)) {
-                    aus.deleteById(id);
+                    author = aus.find(new Integer(id));
+                    aus.remove(author);
                 } else {
                     String error = ID_EMPTY;
                     request.setAttribute("error", error);
                 }
             }
-            
             //edit
             if (subAction.equals(EDIT_ACTION)) {
                 if (id != null && !"".equals(id)) {
-                    Author author = aus.find(new Integer(id));
+                    author = aus.find(new Integer(id));
                     request.setAttribute("author", author);
                 } else {
                     String error = ID_EMPTY;
@@ -102,19 +104,23 @@ public class AuthorController extends HttpServlet {
                     request.setAttribute("error", error);
                     destination = EDIT_PAGE;
                 }
-                aus.editAuthor(id, name);
-            }
+                author = aus.find(new Integer(id));
+              author.setAuthorName(name);
+         }
 
             //create
             if (subAction.equals(CREATE_ACTION)) {
                 if (name == null || "".equals(name)) {
-                    String error = NAME_EMPTY;
-                    request.setAttribute("error", error);
-                    destination = ADD_PAGE;
-                } else {
-                    aus.createAuthor(name);
-                }
-            }
+                   String error = NAME_EMPTY;
+                   request.setAttribute("error", error);
+                   destination = ADD_PAGE;
+              } else {
+                   author = new Author();
+                   author.setAuthorName(name);
+                   author.setDateAdded(new Date());
+                   aus.edit(author);
+              }
+         }
 
             //Essentially refresh the page
             if (subAction.equals(REFRESH_ACTION) || subAction.equals(ALT_REFRESH_PAGE)) {

@@ -26,10 +26,8 @@
                                     <h3>Update Author by ID</h3>
                                     <p>This will return all records in Database - Including update.</p>
                                     <input type="text" name="authorId" value="${author.authorId}" placeholder="Record ID" readonly/>
-                                    <input type="text" name="authorName" placeholder="Name"/>
-                                    <br>
-                                    <br>
-                                    <input type="date" name="authorDate" value="${author.dateAdded}" placeholder="Date" readonly/>
+                                    <input type="text" name="authorName" value="${author.authorName}" placeholder="Name"/>
+
                                     <br>
                                     <br>
                                     <input class="btn btn-info" type="submit" name="submit" value="Update">

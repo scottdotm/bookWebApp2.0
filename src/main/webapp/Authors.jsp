@@ -29,9 +29,9 @@
                     <form method="POST" action="AuthorController?=addEditDelete">
                         <hr>
                         <div name="buttons" class="text-center">
-                        &nbsp;<input type="submit" value="Add" name="submit" class="btn btn-success" />&nbsp;
-                        <input type="submit" value="Edit" name="submit" class="btn btn-warning" />&nbsp;
-                        <input type="submit" value="Delete" name="submit" class="btn btn-danger"/>
+                             &nbsp;<input type="submit" value="Add" name="submit" class="btn btn-success" />&nbsp;
+                             <input type="submit" value="Edit" name="submit" class="btn btn-warning" />&nbsp;
+                             <input type="submit" value="Delete" name="submit" class="btn btn-danger"/>
                         </div>
                         <br>
                         <table class="table table-hover" width="600" border="1" cellspacing="2" cellpadding="5">
